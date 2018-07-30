@@ -5,6 +5,7 @@ import './Track.css'
 class Track extends Component {
   constructor(props){
     super(props);
+    console.log(props);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
   }
@@ -17,10 +18,19 @@ class Track extends Component {
     this.props.removeTrack = this.props.track
   }
 
-  addRemove(){  if(this.props.isRemoval){
-    return '-'
+  decideAddRemove(){
+    if(this.props.isRemoval){
+      this.addTrack()
+    } else{
+      this.removeTrack()
+    }
+  }
+
+  addRemove(){
+    if(this.props.isRemoval){
+      return '-'
     } else {
-    return '+'
+      return '+'
     }
   }
 
@@ -32,8 +42,8 @@ class Track extends Component {
           <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
         <a className="Track-action">
-          <div onClick = {this.removeTrack}>
-            <span>{this.addRemove}</span>
+          <div onClick = {this.decideAddRemove}>
+            <span>{this.addRemove()}</span>
           </div>
         </a>
       </div>
