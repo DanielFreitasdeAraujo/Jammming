@@ -12,11 +12,11 @@ class Track extends Component {
   }
 
   addTrack(){
-    this.props.onAdd = this.props.track
+    this.props.onAdd(this.props.track)
   }
 
   removeTrack(){
-    this.props.removeTrack = this.props.track
+    this.props.removeTrack(this.props.track)
   }
 
   decideAddRemove(){
@@ -24,6 +24,14 @@ class Track extends Component {
       this.removeTrack()
     } else{
       this.addTrack()
+    }
+  }
+
+  addRemove(){
+    if(this.props.isRemoval){
+      return '-'
+    } else{
+      return '+'
     }
   }
 
@@ -37,7 +45,7 @@ class Track extends Component {
         </div>
         <a className="Track-action">
           <div onClick = {this.decideAddRemove}>
-            <span>{this.decideAddRemove()}</span>
+            <span>{this.addRemove()}</span>
           </div>
         </a>
       </div>
