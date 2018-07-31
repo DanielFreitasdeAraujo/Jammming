@@ -12,19 +12,21 @@ class App extends Component {
       searchResults: [{
         name: 'das',
         artist: 'ss',
-        album: 'ss'
+        album: 'ss',
+        id: 2
       },
       {
         name: 'Daniel',
         artist: 'Daniel',
-        album:'Daniel'
+        album:'Daniel',
+        id: 1
       }],
       playlistName: 'New Playlist',
       playlistTracks: [{
         name: '',
         artist: '',
         album: '',
-        id:''
+        id: 3
       }]
     }
     this.addTrack = this.addTrack.bind(this);
@@ -43,14 +45,15 @@ class App extends Component {
 
   addTrack(track){
     if(this.state.playListTracks.find(savedTrack => savedTrack.id === track.id) ) {
-    }
-      this.setState({ playlistTracks: this.state.playlistTracks.push({
-        id: track.id,
-        name: track.name,
-        album: track.album,
-        artist: track.artist
-      })
-    })
+    } else {
+        this.setState({ playlistTracks: this.state.playlistTracks.push({
+          id: track.id,
+          name: track.name,
+          album: track.album,
+          artist: track.artist
+        }
+      )}
+    )}
   };
 
   removeTrack(track){
